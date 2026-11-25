@@ -5,10 +5,10 @@ Vercel.
 
 ## Chạy thử trên máy
 
-Không cần cài dependency. Mở `index.html` trực tiếp hoặc dùng một static server:
+Không cần cài dependency. Chạy development server bằng lệnh:
 
 ```bash
-python3 -m http.server 3000
+npm run dev
 ```
 
 Sau đó truy cập <http://localhost:3000>.

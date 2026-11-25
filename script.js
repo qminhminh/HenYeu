@@ -25,6 +25,7 @@ const productReferences = [
     '41784898690',
     'Nước giặt đồ lót sinh học TopGia 200ml',
     'Chai vòi nhấn, hương thơm thanh mát; dùng giặt đồ nội y. Không dùng trực tiếp trên cơ thể hoặc vùng kín.',
+    'https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mvl62s6nepl539',
   ],
 ];
 
@@ -39,7 +40,13 @@ function createAffiliateUrl(shopId, productId) {
 
 function renderAffiliateProducts() {
   const cards = productReferences.map((product, index) => {
-    const [shopId, productId, productName, productDescription] = product;
+    const [
+      shopId,
+      productId,
+      productName,
+      productDescription,
+      productImage,
+    ] = product;
     const number = String(index + 1).padStart(2, '0');
     const link = document.createElement('a');
     link.className = 'product-card';
@@ -51,13 +58,27 @@ function renderAffiliateProducts() {
       `Mở sản phẩm gợi ý ${number} trên Shopee`,
     );
 
+    const imageMarkup = productImage
+      ? `<img class="product-card__image" src="${productImage}"
+          alt="${productName}" loading="lazy" referrerpolicy="no-referrer">`
+      : `<span class="product-card__icon" aria-hidden="true">${number}</span>`;
+
     link.innerHTML = `
-      <span class="product-card__icon" aria-hidden="true">${number}</span>
+      ${imageMarkup}
       <strong>${productName ?? `Sản phẩm gợi ý ${number}`}</strong>
       <p>${productDescription
         ?? 'Xem mô tả, phân loại, giá bán và đánh giá mới nhất trên Shopee.'}</p>
       <small>Xem chi tiết trên Shopee</small>
     `;
+
+    const image = link.querySelector('.product-card__image');
+    image?.addEventListener('error', () => {
+      const fallback = document.createElement('span');
+      fallback.className = 'product-card__icon';
+      fallback.setAttribute('aria-hidden', 'true');
+      fallback.textContent = number;
+      image.replaceWith(fallback);
+    });
     return link;
   });
 

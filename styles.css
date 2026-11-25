@@ -676,6 +676,15 @@ h2 {
   font-weight: 800;
 }
 
+.product-card__image {
+  display: block;
+  width: calc(100% + 44px);
+  aspect-ratio: 1 / 1;
+  margin: -22px -22px 20px;
+  object-fit: cover;
+  border-radius: 19px 19px 0 0;
+}
+
 .product-card:nth-child(4n + 2) .product-card__icon {
   color: #258468;
   background: #e7f6f1;

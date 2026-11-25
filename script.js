@@ -20,6 +20,12 @@ const productReferences = [
   ['438905996', '56170117486'],
   ['273650958', '6356903411'],
   ['729014007', '46765221982'],
+  [
+    '502146001',
+    '41784898690',
+    'Nước giặt đồ lót sinh học TopGia 200ml',
+    'Kháng khuẩn, hỗ trợ khử mùi, an toàn cho nhiều loại da và lưu hương thơm.',
+  ],
 ];
 
 function createAffiliateUrl(shopId, productId) {
@@ -32,7 +38,8 @@ function createAffiliateUrl(shopId, productId) {
 }
 
 function renderAffiliateProducts() {
-  const cards = productReferences.map(([shopId, productId], index) => {
+  const cards = productReferences.map((product, index) => {
+    const [shopId, productId, productName, productDescription] = product;
     const number = String(index + 1).padStart(2, '0');
     const link = document.createElement('a');
     link.className = 'product-card';
@@ -46,8 +53,9 @@ function renderAffiliateProducts() {
 
     link.innerHTML = `
       <span class="product-card__icon" aria-hidden="true">${number}</span>
-      <strong>Sản phẩm gợi ý ${number}</strong>
-      <p>Xem mô tả, phân loại, giá bán và đánh giá mới nhất trên Shopee.</p>
+      <strong>${productName ?? `Sản phẩm gợi ý ${number}`}</strong>
+      <p>${productDescription
+        ?? 'Xem mô tả, phân loại, giá bán và đánh giá mới nhất trên Shopee.'}</p>
       <small>Xem chi tiết trên Shopee</small>
     `;
     return link;

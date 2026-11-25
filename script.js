@@ -24,7 +24,7 @@ const productReferences = [
     '502146001',
     '41784898690',
     'Nước giặt đồ lót sinh học TopGia 200ml',
-    'Kháng khuẩn, hỗ trợ khử mùi, an toàn cho nhiều loại da và lưu hương thơm.',
+    'Chai vòi nhấn, hương thơm thanh mát; dùng giặt đồ nội y. Không dùng trực tiếp trên cơ thể hoặc vùng kín.',
   ],
 ];
 
